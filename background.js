@@ -6,7 +6,7 @@ class Background extends GameObject {
 
 
     draw = () => {
-        ctx.drawImage(background, this.x, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        ctx.drawImage(background, this.x, 0, this.width, this.height);
         // ctx.drawImage(background, 0, 0, 800, 400, this.x, this.y, this.w, this.h);
     }
 

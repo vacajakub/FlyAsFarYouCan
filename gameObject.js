@@ -8,14 +8,13 @@ class GameObject {
         this.speed = speed;
     }
 
+    draw = () => { }
+    update = () => { }
 
-    draw = () => {
-
-    }
-
-    update = () => {
-
-    }
-
-
+    getX = () => { return this.x; }
+    getY = () => { return this.y; }
+    getWidth = () => { return this.width; }
+    getHeight = () => { return this.height; }
+    getSpeed = () => { return this.speed; }
+    setSpeed = (speed) => { this.speed = speed; }
 }
