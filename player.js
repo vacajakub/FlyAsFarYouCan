@@ -7,15 +7,15 @@ class Player extends GameObject {
     }
 
 
-    draw = () => {
+    render = () => {
         ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
     }
 
     update = () => {
-        this.fallSpeed += 0.05;
+        this.fallSpeed += 0.075;
         this.y += this.fallSpeed + this.upSpeed;
 
-        if (this.y >= CANVAS_HEIGHT) {
+        if (this.y >= CANVAS_HEIGHT || this.y < -50) {
             gameOver = true;
         }
 

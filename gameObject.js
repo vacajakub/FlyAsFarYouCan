@@ -8,8 +8,8 @@ class GameObject {
         this.speed = speed;
     }
 
-    draw = () => { }
-    update = () => { }
+    render = () => {}
+    update = () => {}
 
     getX = () => { return this.x; }
     getY = () => { return this.y; }

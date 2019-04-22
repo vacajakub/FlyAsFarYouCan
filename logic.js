@@ -23,15 +23,15 @@ window.onload = function () {
     var background1 = document.getElementById('background1');
     var background2 = document.getElementById('background2');
     var background3 = document.getElementById('background3');
-    var background4 = document.getElementById('background4');
     playerImg = document.getElementById('plane');
-    setBackground(1);
+    setBackground(Math.floor(Math.random() * 3) + 1);  
     var bg1 = new Background(0, 0, 800, 400, 2);
     var bg2 = new Background(800, 0, 800, 400, 2);
     var player = new Player(60, 125, 80, 80, 2);
 
     loop();
 
+    //pole obstacles a kontrolovat vse, pridat nove vzdy na nejaky frame
 
 
     document.addEventListener('keydown', (event) => {
@@ -45,6 +45,10 @@ window.onload = function () {
             } else {
                 paused = true;
             }
+        } else if(event.key == "Enter"){
+            if(gameOver){
+                window.location.reload();
+            }
         }
     });
 
@@ -55,9 +59,9 @@ window.onload = function () {
             bg2.update();
             player.update();
             ctx.clearRect(0, 0, 800, 400);
-            bg1.draw();
-            bg2.draw();
-            player.draw();
+            bg1.render();
+            bg2.render();
+            player.render();
         }
 
 
@@ -68,11 +72,13 @@ window.onload = function () {
             ctx.fillStyle = 'white';
             ctx.fillText("Game Over", 400, 200);
         } else if (paused) {
-            ctx.font = '30px Lucida Console';
+            ctx.font = '40px Lucida Console';
             ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
             ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
             ctx.fillStyle = 'white';
-            ctx.fillText("Paused press ESC to continue", 400, 200);
+            ctx.fillText("Paused", 400, 200);
+            ctx.font = '26px Lucida Console';
+            ctx.fillText("press ESC to continue", 400, 250);
         } else {
             window.requestAnimationFrame(loop);
         }
@@ -89,9 +95,6 @@ window.onload = function () {
                 break;
             case 3:
                 background = background3;
-                break;
-            case 4:
-                background = background4;
                 break;
             default:
         }
