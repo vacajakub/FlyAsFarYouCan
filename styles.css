@@ -1,9 +1,9 @@
 body {
     background: lightgray;
+    min-width: 800px;
 }
 
 #canvas {
- 
     position: absolute;
     left: 50%;
     top: 50%;
