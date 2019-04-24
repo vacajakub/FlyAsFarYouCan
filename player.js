@@ -29,6 +29,13 @@ class Player extends GameObject {
             this.animation = 0;
         }
 
+        if (this.x < obstacle.getX() + obstacle.getWidth() &&
+            this.x + this.width > obstacle.getX() &&
+            this.y < obstacle.getY() + obstacle.getHeight() &&
+            this.y + this.height > obstacle.getY()){
+                gameOver = true;
+            }
+
         if (this.y >= CANVAS_HEIGHT || this.y < -50) {
             gameOver = true;
         }

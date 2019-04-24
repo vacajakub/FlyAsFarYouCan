@@ -2,15 +2,18 @@ var canvas;
 var ctx;
 var background;
 var playerImg;
+var obstacle;
 
 var gameOver = false;
 var paused = false;
 var score = 0;
 var frame = 0;
 
+
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 400;
 const MAX_OBSTACLE_HEIGHT = CANVAS_HEIGHT - 200;
+
 
 var dt = 0;
 var t1 = Date.now();
@@ -35,8 +38,7 @@ window.onload = function () {
     var bg1 = new Background(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
     var bg2 = new Background(CANVAS_WIDTH, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
     var player = new Player(60, 125, 70, 70, 2);
-    var obstacle = new Obstacle(800, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 50, 100, 2);
-    var obstacles = [];
+    obstacle = new Obstacle(800, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 50, 100, 2);
     play();
 
     //pole obstacles a kontrolovat vse, pridat nove vzdy na nejaky frame
