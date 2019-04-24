@@ -29,12 +29,18 @@ class Player extends GameObject {
             this.animation = 0;
         }
 
-        if (this.x < obstacle.getX() + obstacle.getWidth() &&
-            this.x + this.width > obstacle.getX() &&
-            this.y < obstacle.getY() + obstacle.getHeight() &&
-            this.y + this.height > obstacle.getY()){
-                gameOver = true;
-            }
+        if (this.x + COLLISION_RESERVE < obstacle.getX() + obstacle.getWidth() &&
+            this.x + this.width - COLLISION_RESERVE > obstacle.getX() &&
+            this.y + 5 < obstacle.getY() + obstacle.getHeight() &&
+            this.y + this.height - COLLISION_RESERVE > obstacle.getY()) {
+            gameOver = true;
+        }
+        if (this.x + COLLISION_RESERVE < obstacle2.getX() + obstacle2.getWidth() &&
+            this.x + this.width - COLLISION_RESERVE > obstacle2.getX() &&
+            this.y + 5 < obstacle2.getY() + obstacle2.getHeight() &&
+            this.y + this.height - COLLISION_RESERVE > obstacle2.getY()) {
+            gameOver = true;
+        }
 
         if (this.y >= CANVAS_HEIGHT || this.y < -50) {
             gameOver = true;

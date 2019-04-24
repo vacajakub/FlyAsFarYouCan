@@ -2,7 +2,9 @@ var canvas;
 var ctx;
 var background;
 var playerImg;
+var obstacleImg;
 var obstacle;
+var obstacle2;
 
 var gameOver = false;
 var paused = false;
@@ -12,7 +14,8 @@ var frame = 0;
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 400;
-const MAX_OBSTACLE_HEIGHT = CANVAS_HEIGHT - 200;
+const MAX_OBSTACLE_HEIGHT = CANVAS_HEIGHT - 250;
+const COLLISION_RESERVE  = 5;
 
 
 var dt = 0;
@@ -34,11 +37,13 @@ window.onload = function () {
     playerImg = document.getElementById('plane');
     playerImg2 = document.getElementById('plane2');
     playerImgDead = document.getElementById('planeDead');
+    obstacleImg = document.getElementById('obstacle');
     setBackground(Math.floor(Math.random() * 3) + 1);
     var bg1 = new Background(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
     var bg2 = new Background(CANVAS_WIDTH, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
-    var player = new Player(60, 125, 70, 70, 2);
-    obstacle = new Obstacle(800, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 50, 100, 2);
+    var player = new Player(60, 125, 60, 60, 2.75);
+    obstacle = new Obstacle(800, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 40, 100, 2);
+    obstacle2 = new Obstacle(1200, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 40, 100, 2);
     play();
 
     //pole obstacles a kontrolovat vse, pridat nove vzdy na nejaky frame
@@ -74,6 +79,7 @@ window.onload = function () {
                 bg1.incrementSpeed();
                 bg2.incrementSpeed();
                 obstacle.incrementSpeed();
+                obstacle2.incrementSpeed();
             }
             updateAll();
             ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -107,6 +113,7 @@ window.onload = function () {
         bg1.update();
         bg2.update();
         obstacle.update();
+        obstacle2.update();
         player.update();
     }
 
@@ -115,6 +122,7 @@ window.onload = function () {
         bg2.render();
         player.render();
         obstacle.render();
+        obstacle2.render();
     }
 
 

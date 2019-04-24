@@ -19,7 +19,7 @@ class Background extends GameObject {
     }
 
     incrementSpeed = () => {
-        var newSpeed = this.speed + 0.5;
+        var newSpeed = this.speed + 0.25;
         if(newSpeed > this.maxSpeed){
             newSpeed = this.maxSpeed;
         }

@@ -2,13 +2,12 @@ class Obstacle extends GameObject {
 
     constructor(x, y, width, height, speed) {
         super(x, y, width, height, speed);
-        this.maxSpeed = 6;
+        this.maxSpeed = 8;
     }
 
 
     render = () => {
-        ctx.fillStyle = "red";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height);
     }
 
     update = () => {
@@ -26,7 +25,7 @@ class Obstacle extends GameObject {
     }
 
     incrementSpeed = () => {
-        var newSpeed = this.speed + 0.5;
+        var newSpeed = this.speed + 0.25;
         if (newSpeed > this.maxSpeed) {
             newSpeed = this.maxSpeed;
         }
