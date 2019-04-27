@@ -5,9 +5,10 @@ var playerImg;
 var obstacleImg;
 var obstacle;
 var obstacle2;
+var crashSound;
 
 var gameOver = false;
-var paused = false;
+var paused = true;
 var score = 0;
 var frame = 0;
 
@@ -15,7 +16,7 @@ var frame = 0;
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 400;
 const MAX_OBSTACLE_HEIGHT = CANVAS_HEIGHT - 250;
-const COLLISION_RESERVE  = 5;
+const COLLISION_RESERVE = 5;
 
 
 var dt = 0;
@@ -31,37 +32,48 @@ window.onload = function () {
     ctx.textAlign = 'center';
     ctx.strokeStyle = 'black';
 
-    var background1 = document.getElementById('background1');
-    var background2 = document.getElementById('background2');
-    var background3 = document.getElementById('background3');
+    let background1 = document.getElementById('background1');
+    let background2 = document.getElementById('background2');
+    let background3 = document.getElementById('background3');
     playerImg = document.getElementById('plane');
     playerImg2 = document.getElementById('plane2');
     playerImgDead = document.getElementById('planeDead');
     obstacleImg = document.getElementById('obstacle');
     setBackground(Math.floor(Math.random() * 3) + 1);
-    var bg1 = new Background(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
-    var bg2 = new Background(CANVAS_WIDTH, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
-    var player = new Player(60, 125, 60, 60, 2.75);
+    let bg1 = new Background(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
+    let bg2 = new Background(CANVAS_WIDTH, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
+    let player = new Player(60, 125, 60, 60, 2.75);
     obstacle = new Obstacle(800, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 40, 100, 2);
     obstacle2 = new Obstacle(1200, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 40, 100, 2);
+    const music = new Audio("Electronic-beat.mp3");
+    const helicopterSound = new Audio("helicopter1.wav");
+    crashSound = new Audio("crash.wav");
+    // helicopterSound.addEventListener('ended', function () {
+    //     this.currentTime = 0;
+    //     this.play();
+    // }, false);
+    renderAll();
     play();
-
-    //pole obstacles a kontrolovat vse, pridat nove vzdy na nejaky frame
+    // music.play();
 
 
     document.addEventListener('keydown', (event) => {
         if (event.key == "ArrowUp") {
             player.moveUp(player.getSpeed());
+            helicopterSound.play();
+            helicopterSound.pause();
         } else if (event.key == "Escape") {
             if (paused) {
                 paused = false;
                 play();
+                music.play();
             } else {
                 paused = true;
             }
         } else if (event.key == "Enter") {
             if (gameOver) {
                 window.location.reload();
+                paused = false;
             }
         }
     });
@@ -88,6 +100,8 @@ window.onload = function () {
 
 
         if (gameOver) {
+            music.pause();
+            helicopterSound.pause();
             player.render();
             ctx.font = '56px Lucida Console';
             ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
@@ -97,6 +111,8 @@ window.onload = function () {
             ctx.font = '40px Lucida Console';
             ctx.fillText("Score: " + score, 400, 270);
         } else if (paused) {
+            music.pause()
+            helicopterSound.pause();
             ctx.font = '40px Lucida Console';
             ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
             ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
