@@ -48,10 +48,11 @@ window.onload = function () {
     const music = new Audio("Electronic-beat.mp3");
     const helicopterSound = new Audio("helicopter1.wav");
     crashSound = new Audio("crash.wav");
-    // helicopterSound.addEventListener('ended', function () {
-    //     this.currentTime = 0;
-    //     this.play();
-    // }, false);
+    var scoreboard = [];
+    const scoreLink = document.getElementById("scorelink");
+    const controlsLink = document.getElementById("controllink");
+    const gameLink = document.getElementById("gamelink");
+
     renderAll();
     play();
     // music.play();
@@ -76,6 +77,27 @@ window.onload = function () {
                 paused = false;
             }
         }
+    });
+
+    scoreLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        $("html, body").animate({
+            scrollTop: $("#scoreboard").offset().top
+        }, 1000);
+    });
+
+    controlsLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        $("html, body").animate({
+            scrollTop: $("#controls").offset().top
+        }, 1000);
+    });
+
+    gameLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        $("html, body").animate({
+            scrollTop: $("#game").offset().top
+        }, 1000);
     });
 
     function play() {
