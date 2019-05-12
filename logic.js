@@ -48,7 +48,7 @@ window.onload = function () {
     const music = new Audio("Electronic-beat.mp3");
     const helicopterSound = new Audio("helicopter1.wav");
     crashSound = new Audio("crash.wav");
-    var scoreboard = [];
+    let scoreLog = JSON.parse(localStorage.getItem("scoreboard")) || [];
     const scoreLink = document.getElementById("scorelink");
     const controlsLink = document.getElementById("controllink");
     const gameLink = document.getElementById("gamelink");
@@ -75,6 +75,12 @@ window.onload = function () {
             if (gameOver) {
                 window.location.reload();
                 paused = false;
+            } else if (paused) {
+                paused = false;
+                play();
+                music.play();
+            } else {
+                paused = true;
             }
         }
     });
@@ -132,6 +138,8 @@ window.onload = function () {
             ctx.fillText("Game Over", 400, 200);
             ctx.font = '40px Lucida Console';
             ctx.fillText("Score: " + score, 400, 270);
+            scoreLog.push(score);
+            localStorage.setItem("scoreboard", JSON.stringify(scoreLog));
         } else if (paused) {
             music.pause()
             helicopterSound.pause();
@@ -139,9 +147,7 @@ window.onload = function () {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
             ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
             ctx.fillStyle = 'white';
-            ctx.fillText("Paused", 400, 200);
-            ctx.font = '26px Lucida Console';
-            ctx.fillText("press ESC to continue", 400, 250);
+            ctx.fillText("press Enter to play", 400, 200);
         } else {
             window.requestAnimationFrame(play);
         }
