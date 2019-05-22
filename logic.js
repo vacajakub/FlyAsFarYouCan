@@ -49,10 +49,13 @@ window.onload = function () {
     const helicopterSound = new Audio("helicopter1.wav");
     crashSound = new Audio("crash.wav");
     let scoreLog = JSON.parse(localStorage.getItem("scoreboard")) || [];
+    let scoreboard = document.getElementById("scoreboard")
     const scoreLink = document.getElementById("scorelink");
     const controlsLink = document.getElementById("controllink");
     const gameLink = document.getElementById("gamelink");
+    const suggestionLink = document.getElementById("suggestionlink");
 
+    fillScoreboard();
     renderAll();
     play();
     // music.play();
@@ -106,6 +109,13 @@ window.onload = function () {
         }, 1000);
     });
 
+    suggestionLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        $("html, body").animate({
+            scrollTop: $("#suggestion").offset().top
+        }, 1000);
+    });
+
     function play() {
         if (!gameOver && !paused) {
             let t2 = Date.now();
@@ -140,6 +150,7 @@ window.onload = function () {
             ctx.fillText("Score: " + score, 400, 270);
             scoreLog.push(score);
             localStorage.setItem("scoreboard", JSON.stringify(scoreLog));
+            fillScoreboard();
         } else if (paused) {
             music.pause()
             helicopterSound.pause();
@@ -167,6 +178,45 @@ window.onload = function () {
         player.render();
         obstacle.render();
         obstacle2.render();
+    }
+
+
+    function fillScoreboard() {
+        scoreLog = JSON.parse(localStorage.getItem("scoreboard")) || [];
+        if (scoreLog.length != 0) {
+            scoreLog.sort((a, b) => b - a);
+        }
+        var size;
+        if (scoreLog.length < 10) {
+            size = scoreLog.length;
+        } else {
+            size = 10;
+        }
+        while (scoreboard.firstChild) {
+            scoreboard.removeChild(scoreboard.firstChild);
+        }
+        let table = document.createElement("table");
+        let trHead = document.createElement("tr");
+        let thPoradi = document.createElement("th");
+        thPoradi.textContent = "#";
+        let thScore = document.createElement("th");
+        thScore.textContent = "Score";
+        scoreboard.appendChild(table);
+        table.appendChild(trHead);
+        trHead.appendChild(thPoradi);
+        trHead.appendChild(thScore);
+
+        for (let i = 0; i < size; i++) {
+            const score = scoreLog[i];
+            let tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            td1.textContent = i + 1 + ".";
+            let td2 = document.createElement("td");
+            td2.textContent = score;
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            table.appendChild(tr);
+        }
     }
 
 

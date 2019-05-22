@@ -23,6 +23,12 @@ body {
 
 img {
     display: none;
+    /* visibility: hidden; */
+}
+
+img#arrowUp {
+  visibility: visible;
+  display: block;
 }
 
 header nav {
@@ -71,17 +77,42 @@ footer {
 }
 
 
-#game{
-
-}
-
-#controls{
+#controls {
     height: 700px;
 }
 
-#scoreboard{
-    height: 700px;
-    background-color: black;
+
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  width: 20%;
+  align-content: center;
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+table td, table tr {
+  border: 1px solid rgb(238, 237, 237);
+  padding: 8px;
+}
+
+table tr:nth-child(even){
+  background-color: red;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #585845;
+  color: white;
 }
 
 @media screen and (max-width: 800px) {

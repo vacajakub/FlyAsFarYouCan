@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <title>Semestral KAJ</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <!-- browser tab icon -->
     <link rel="shortcut icon" href="images/icon.png">
+    <!-- Lato font -->
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <!-- <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script> -->
+    <!-- preload sprites -->
     <img src="images/game_background_1/game_background_1.png" id="background1" alt="background_img">
     <img src="images/game_background_2/game_background_2.png" id="background2" alt="background_img">
     <img src="images/game_background_4/game_background_4.png" id="background3" alt="background_img">
@@ -18,55 +20,50 @@
 </head>
 
 <body>
-
-    <div class="container">
-
-
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="#scoreboard" id="scorelink">Scoreboard</a></li>
-                    <li><a href="#controls" id="controllink">Controls</a></li>
-                    <li><a href="#game" id="gamelink">Game</a></li>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#suggestion" id="suggestionlink">Suggestion</a></li>
+                <li><a href="#scoreboard" id="scorelink">Scoreboard</a></li>
+                <li><a href="#controls" id="controllink">Controls</a></li>
+                <li><a href="#game" id="gamelink">Game</a></li>
                 </ul>
-            </nav>
-        </header>
+        </nav>
+    </header>
 
-        <section id="game">
-            <canvas width="800" height="400" id="canvas">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
-        </section>
+    <div id="game">
+        <canvas width="800" height="400" id="canvas">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+    </div>
 
-        <section id="controls">
-            <div class="controls">
+    <div id="controls">
 
-            </div>
-
-        </section>
-
-        <section id="scoreboard">
-
-        </section>
-
-        <footer>
-            <p class="footerp">
-            Copyright © Jakub Váca
-            </p>
-        </footer>
-        
+        <img src="images/arrow.svg" id="arrowUp"/>
 
     </div>
 
+    <div id="scoreboard">
+        
+    </div>
+
+    <div id="suggestion">
+        
+    </div>
+
+    <footer>
+        <p class="footerp">
+            Copyright © Jakub Váca
+        </p>
+    </footer>
+
+
+    <script src="gameObject.js"></script>
+    <script src="background.js"></script>
+    <script src="player.js"></script>
+    <script src="obstacle.js"></script>
+    <script src="logic.js"></script>
+
 </body>
-
-
-
-
-<script src="gameObject.js">//TODO music, scoreboard</script>
-<script src="background.js"></script>
-<script src="player.js"></script>
-<script src="obstacle.js"></script>
-<script src="logic.js"></script>
 
 </html>
