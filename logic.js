@@ -22,6 +22,7 @@ const COLLISION_RESERVE = 5;
 var dt = 0;
 var t1 = Date.now();
 
+
 window.onload = function () {
 
     canvas = document.getElementById('canvas');
@@ -54,6 +55,15 @@ window.onload = function () {
     const controlsLink = document.getElementById("controllink");
     const gameLink = document.getElementById("gamelink");
     const suggestionLink = document.getElementById("suggestionlink");
+    const onlineIcon = document.getElementById("online");
+    const offlineIcon = document.getElementById("offline");
+    if(navigator.onLine){
+        onlineIcon.classList.add("show");
+        offlineIcon.classList.remove("show");
+    } else {
+        onlineIcon.classList.remove("show");
+        offlineIcon.classList.add("show");
+    }
 
     fillScoreboard();
     renderAll();
@@ -114,6 +124,16 @@ window.onload = function () {
         $("html, body").animate({
             scrollTop: $("#suggestion").offset().top
         }, 1000);
+    });
+
+    window.addEventListener('online', () => {
+        onlineIcon.classList.add("show");
+        offlineIcon.classList.remove("show");
+    });
+
+    window.addEventListener('offline', () => {
+        onlineIcon.classList.remove("show");
+        offlineIcon.classList.add("show");
     });
 
     function play() {

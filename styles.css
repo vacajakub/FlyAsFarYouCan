@@ -1,5 +1,4 @@
 body {
-    /* background: #fff; */
     min-width: 800px;
     font-family: 'Lato', sans-serif;
     padding: 0;
@@ -7,28 +6,60 @@ body {
     min-height: 100vh;
     background: #bdc3c7;  
     background: -webkit-linear-gradient(to bottom, #2c3e50, #bdc3c7);  
+    background: -webkit-gradient(linear, left top, left bottom, from(#2c3e50), to(#bdc3c7));  
+    background: -webkit-linear-gradient(top, #2c3e50, #bdc3c7);  
+    background: -o-linear-gradient(top, #2c3e50, #bdc3c7);  
     background: linear-gradient(to bottom, #2c3e50, #bdc3c7); 
 }
 
 #canvas {
     border-radius: 20px;
-    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
     margin-right: auto;
     display: block;
     margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 
 img {
     display: none;
-    /* visibility: hidden; */
 }
 
 img#arrowUp {
   visibility: visible;
   display: block;
+  height: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+#arrowUp:hover{
+  height: 25rem;
+  margin-bottom: 3rem;
+  -webkit-transform: rotate(60deg);
+      -ms-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+img#online, img#offline {
+  height: 1rem;
+  margin-left: 1rem;
+  padding: 0;
+}
+
+.show {
+  display: inline;
+}
+
+#controls p {
+  text-align: center;
 }
 
 header nav {
@@ -76,13 +107,6 @@ footer {
         text-align: center !important;
 }
 
-
-#controls {
-    height: 700px;
-}
-
-
-
 table {
   margin-left: auto;
   margin-right: auto;
@@ -90,7 +114,8 @@ table {
   margin-top: 5rem;
   margin-bottom: 1rem;
   width: 20%;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   text-align: center;
   background-color: whitesmoke;
 }
@@ -123,7 +148,9 @@ table th {
     }
 
     header nav {
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 
 }
