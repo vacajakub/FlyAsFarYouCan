@@ -69,7 +69,7 @@ window.onload = function () {
     const formEmail = document.getElementById("email");
     const formTextArea = document.getElementById("textarea");
     //show online/offline icon on first load
-    if(navigator.onLine){
+    if (navigator.onLine) {
         onlineIcon.classList.add("show");
         offlineIcon.classList.remove("show");
     } else {
