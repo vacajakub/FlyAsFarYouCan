@@ -49,6 +49,7 @@ Horní meny se při detekování malé obrazovky přetransofrmuje. Dále je nast
 Kompatibilita:
 Pro kompatibilitu CSS jsou všude přidány vendor prefixy. Dále byla aplikace vyvíjena v Google Chroma a funkcionalita otestována i v Mozzile Firefox, kde bylo nutné změnit ES6 definici funkcí v objektech.
 
+Pozn. History API nebylo implementováno, jelikož pro něj na mé stránce není využití.
 
 
 Postup:
