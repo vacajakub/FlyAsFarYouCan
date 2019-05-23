@@ -57,6 +57,10 @@ window.onload = function () {
     const suggestionLink = document.getElementById("suggestionlink");
     const onlineIcon = document.getElementById("online");
     const offlineIcon = document.getElementById("offline");
+    const formSubmit = document.getElementById("formsubmit");
+    const form = document.getElementById("contact");
+    const formEmail = document.getElementById("email");
+    const formTextArea = document.getElementById("textarea");
     if(navigator.onLine){
         onlineIcon.classList.add("show");
         offlineIcon.classList.remove("show");
@@ -96,6 +100,12 @@ window.onload = function () {
                 paused = true;
             }
         }
+    });
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        formEmail.value = "";
+        formTextArea.value = "";
     });
 
     scoreLink.addEventListener('click', (event) => {

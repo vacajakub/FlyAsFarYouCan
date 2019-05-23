@@ -22,10 +22,9 @@
 <body>
     <header>
         <nav>
-            
+            <img src="images/online.png" id="online" alt="online_icon" />
+            <img src="images/offline.png" id="offline" alt="offline_icon" />
             <ul>
-                <img src="images/online.png" id="online" />
-                <img src="images/offline.png" id="offline"/>
                 <li><a href="#suggestion" id="suggestionlink">Suggestions</a></li>
                 <li><a href="#scoreboard" id="scorelink">Scoreboard</a></li>
                 <li><a href="#controls" id="controllink">Controls</a></li>
@@ -41,7 +40,7 @@
     </div>
 
     <div id="controls">
-        <img src="images/arrow.svg" id="arrowUp"/>
+        <img src="images/arrow.svg" id="arrowUp" alt="arrow_key"/>
         <p>Just hit arrow up!</p>
 
     </div>
@@ -51,6 +50,14 @@
     </div>
 
     <div id="suggestion">
+        <form id="contact">
+            <h3>Contact us!</h3>
+            <input type="email" name="Email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" required>
+            <br>
+            <textarea placeholder="Leave a message" id="textarea"></textarea>
+            <br>
+            <input type="submit" value="Send" id="formsubmit">
+        </form>
         
     </div>
 
