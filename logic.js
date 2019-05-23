@@ -1,3 +1,4 @@
+//vars needed to be accesed from other files
 var canvas;
 var ctx;
 var background;
@@ -7,12 +8,13 @@ var obstacle;
 var obstacle2;
 var crashSound;
 
+//game flags
 var gameOver = false;
 var paused = true;
 var score = 0;
 var frame = 0;
 
-
+//constants
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 400;
 const MAX_OBSTACLE_HEIGHT = CANVAS_HEIGHT - 250;
@@ -22,7 +24,7 @@ const COLLISION_RESERVE = 5;
 var dt = 0;
 var t1 = Date.now();
 
-
+//wait for window to load everything
 window.onload = function () {
 
     canvas = document.getElementById('canvas');
@@ -33,6 +35,7 @@ window.onload = function () {
     ctx.textAlign = 'center';
     ctx.strokeStyle = 'black';
 
+    //get images
     let background1 = document.getElementById('background1');
     let background2 = document.getElementById('background2');
     let background3 = document.getElementById('background3');
@@ -40,27 +43,32 @@ window.onload = function () {
     playerImg2 = document.getElementById('plane2');
     playerImgDead = document.getElementById('planeDead');
     obstacleImg = document.getElementById('obstacle');
+    //set random background
     setBackground(Math.floor(Math.random() * 3) + 1);
+    //create game objects
     let bg1 = new Background(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
     let bg2 = new Background(CANVAS_WIDTH, 0, CANVAS_WIDTH, CANVAS_HEIGHT, 2);
     let player = new Player(60, 125, 60, 60, 2.75);
     obstacle = new Obstacle(800, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 40, 100, 2);
     obstacle2 = new Obstacle(1200, Math.floor(Math.random() * (CANVAS_HEIGHT - 100)), 40, 100, 2);
-    const music = new Audio("Electronic-beat.mp3");
-    const helicopterSound = new Audio("helicopter1.wav");
-    crashSound = new Audio("crash.wav");
+    //init music
+    const music = new Audio("sounds/Electronic-beat.mp3");
+    const helicopterSound = new Audio("sounds/helicopter1.wav");
+    crashSound = new Audio("sounds/crash.wav");
+    //init scoreLog
     let scoreLog = JSON.parse(localStorage.getItem("scoreboard")) || [];
     let scoreboard = document.getElementById("scoreboard")
+    //cache dom
     const scoreLink = document.getElementById("scorelink");
     const controlsLink = document.getElementById("controllink");
     const gameLink = document.getElementById("gamelink");
     const suggestionLink = document.getElementById("suggestionlink");
     const onlineIcon = document.getElementById("online");
     const offlineIcon = document.getElementById("offline");
-    const formSubmit = document.getElementById("formsubmit");
     const form = document.getElementById("contact");
     const formEmail = document.getElementById("email");
     const formTextArea = document.getElementById("textarea");
+    //show online/offline icon on first load
     if(navigator.onLine){
         onlineIcon.classList.add("show");
         offlineIcon.classList.remove("show");
@@ -72,9 +80,9 @@ window.onload = function () {
     fillScoreboard();
     renderAll();
     play();
-    // music.play();
 
 
+    //add event listeners for keys
     document.addEventListener('keydown', (event) => {
         if (event.key == "ArrowUp") {
             player.moveUp(player.getSpeed());
@@ -102,12 +110,14 @@ window.onload = function () {
         }
     });
 
+    //handle form without php
     form.addEventListener('submit', (event) => {
         event.preventDefault();
         formEmail.value = "";
         formTextArea.value = "";
     });
 
+    //jQuery slow scrolling to sections of page
     scoreLink.addEventListener('click', (event) => {
         event.preventDefault();
         $("html, body").animate({
@@ -136,6 +146,7 @@ window.onload = function () {
         }, 1000);
     });
 
+    //on change of online/ofline show correct icon
     window.addEventListener('online', () => {
         onlineIcon.classList.add("show");
         offlineIcon.classList.remove("show");
@@ -146,27 +157,33 @@ window.onload = function () {
         offlineIcon.classList.add("show");
     });
 
+
+    //main game loop, using window.requestAnimationFrame
     function play() {
         if (!gameOver && !paused) {
             let t2 = Date.now();
             dt = t2 - t1;
             t1 = t2;
+            //count frames
             frame++;
+            //increment score after while
             if ((frame % 10 == 0)) {
                 score++;
             }
+            //after while speed up game
             if ((frame % 250) == 0) {
                 bg1.incrementSpeed();
                 bg2.incrementSpeed();
                 obstacle.incrementSpeed();
                 obstacle2.incrementSpeed();
             }
+            //update login on all
             updateAll();
             ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            //render all
             renderAll();
         }
-
-
+        //check game state
         if (gameOver) {
             music.pause();
             helicopterSound.pause();
@@ -210,7 +227,8 @@ window.onload = function () {
         obstacle2.render();
     }
 
-
+    //fill scoreboard from log
+    //sort and take first 10 best scores
     function fillScoreboard() {
         scoreLog = JSON.parse(localStorage.getItem("scoreboard")) || [];
         if (scoreLog.length != 0) {

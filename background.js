@@ -5,24 +5,44 @@ class Background extends GameObject {
         this.maxSpeed = 6;
     }
 
-
-    render = () => {
+    render() {
         ctx.drawImage(background, this.x, 0, this.width, this.height);
     }
 
-
-    update = () => {
+    update(){
         this.x -= this.speed;
         if (this.x <= -CANVAS_WIDTH) {
             this.x = CANVAS_WIDTH;
         }
     }
 
-    incrementSpeed = () => {
+    incrementSpeed(){
         var newSpeed = this.speed + 0.25;
         if(newSpeed > this.maxSpeed){
             newSpeed = this.maxSpeed;
         }
         this.speed = newSpeed;
     }
+
+
+    //DOENST WORK IN MOZZILA
+    // render = () => {
+    //     ctx.drawImage(background, this.x, 0, this.width, this.height);
+    // }
+
+
+    // update = () => {
+    //     this.x -= this.speed;
+    //     if (this.x <= -CANVAS_WIDTH) {
+    //         this.x = CANVAS_WIDTH;
+    //     }
+    // }
+
+    // incrementSpeed = () => {
+    //     var newSpeed = this.speed + 0.25;
+    //     if (newSpeed > this.maxSpeed) {
+    //         newSpeed = this.maxSpeed;
+    //     }
+    //     this.speed = newSpeed;
+    // }
 }

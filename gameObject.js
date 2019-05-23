@@ -8,13 +8,30 @@ class GameObject {
         this.speed = speed;
     }
 
-    render = () => {}
-    update = () => {}
+    render() { }
 
-    getX = () => { return this.x; }
-    getY = () => { return this.y; }
-    getWidth = () => { return this.width; }
-    getHeight = () => { return this.height; }
-    getSpeed = () => { return this.speed; }
-    setSpeed = (speed) => { this.speed = speed; }
+    update() { }
+
+    getX() { return this.x; }
+
+    getY() { return this.y; }
+
+    getWidth() { return this.width; }
+
+    getHeight() { return this.height; }
+
+    getSpeed() { return this.speed; }
+
+    setSpeed(speed) { this.speed = speed; }
+
+
+    //DOENST WORK IN MOZZILA
+    // render = () => {}
+    // update = () => {}
+    // getX = () => { return this.x; }
+    // getY = () => { return this.y; }
+    // getWidth = () => { return this.width; }
+    // getHeight = () => { return this.height; }
+    // getSpeed = () => { return this.speed; }
+    // setSpeed = (speed) => { this.speed = speed; }
 }

@@ -22,7 +22,7 @@ body {
     margin-right: auto;
     display: block;
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 10rem;
 }
 
 img {
@@ -42,7 +42,7 @@ img#arrowUp {
 
 #arrowUp:hover{
   height: 25rem;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   -webkit-transform: rotate(60deg);
       -ms-transform: rotate(60deg);
           transform: rotate(60deg);
@@ -61,6 +61,7 @@ img#online, img#offline {
 
 #controls p {
   text-align: center;
+  margin-bottom: 10rem;
 }
 
 header nav {
@@ -113,7 +114,7 @@ table {
   margin-right: auto;
   border-collapse: collapse;
   margin-top: 5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 10rem;
   width: 20%;
   -ms-flex-line-pack: center;
       align-content: center;
