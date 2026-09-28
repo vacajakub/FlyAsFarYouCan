@@ -1,3 +1,5 @@
+Really old game I created when I was learning some javascript basics (2018)
+
 Nekonečná čistě javascriptová hra inspirující se Jetpack Joyride a Flappy bird.
 Cílem je vyhýbat se všem překážkám co nejdýl a tím pádem získat nejvyšší skóre. Hra se postupně ztěžuje zvětšením rychlosti.
 Ve hře jsou k dispozici až 3 různé pozadí, které se náhodně vybírají při startu hry.
